@@ -1,10 +1,10 @@
 `timescale 10ns/1ns
 
 module tb_spi;
-	reg 		 clk;    // Clock
-	reg 		 rst;    // Asynchronous reset active high
+	reg 	     clk;    // Clock
+	reg 	     rst;    // Asynchronous reset active high
 	reg  [7:0]   din,dvsr;
-	reg 		 wr;
+	reg 	     wr;
 	wire [7:0]   dout;
 	wire         spi_clk,spi_mosi;
 	reg          spi_miso;
@@ -19,7 +19,7 @@ spi dut(clk,rst,din,dvsr,wr,dout,spi_clk,spi_mosi,
 
 	  	// Dump File
 	  	$dumpfile("spi.dmp");	// Simulation info dumped to spi.dmp	
-	  	$dumpvars;			 	// Dump all the signals in the design.
+	  	$dumpvars;		// Dump all the signals in the design.
 
 	  	clk  	 = 0;
 	  	rst  	 = 1;
