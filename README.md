@@ -1,6 +1,5 @@
-=================================
-SPI (Serial Peripheral Interface)
-=================================
+# SPI (Serial Peripheral Interface) 
+
 The SPI bus is a Synchronous serial protocol. An SPI bus contains One Master and One or more Slave devices. 
 
 It uses three (For One Slave) lines for communication, including one for the clock(SCLK), one for serial data input(MISO), and one for serial data output(MOSI).
@@ -24,3 +23,10 @@ Mode 0, in which the base value of the clock is zero
 changed at the falling edge (i.e., phase is 0).
 
 Basically, the data bits are placed at the falling edge and retrieved at the rising edge of the SCLK signal. This arrangement eases the timing constraint since the shifting and retrieval are done at opposite edges.
+
+The din port is the 8-bit input data to be transferred and the dout port is the received data. The dvsr port specifies the clock divisor value, which in turn controls the frequency of sclk . The spi.clk , spi.miso, and spi_mosi ports are connected to the clock and data lines of the SPI bus.
+
+In addition, the controller includes an input command, wr_sd, which initiates the data transfer, and two status signals, spi_idle and spi_done.
+
+The sin_reg and sout_reg registers are shift registers storing the input and output data, respectively. The input data from 
+spi_miso is sampled and shifted into sin_reg at the rising edge of spi.clk, which occurs when the FSM transits from the sclkO state to the sclk1 state. The MSB of sout_reg is connected to spi_mosi. The old bit is shifted out at the fallingedge of spi.clk, which occurs when the FSM transits from the sclk1 state to the sclkO state. The bit_reg register keeps track of the numbers of bits processed.
